@@ -4,6 +4,7 @@ const express = require('express');
 
 // IMPORT ROUTES
 const testRoute = require('./routes/test');
+const itemRoute = require('./routes/item');
 
 const app = express();
 admin.initializeApp();
@@ -13,5 +14,6 @@ admin.initializeApp();
 //
 
 app.use('/test', testRoute);
+app.use('/items', itemRoute);
 
 exports.api = functions.https.onRequest(app);
