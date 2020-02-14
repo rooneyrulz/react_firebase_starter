@@ -3,13 +3,15 @@ const admin = require('firebase-admin');
 
 const router = Router({ strict: true });
 
+const db = admin.firestore();
+
 // ROUTE            >     GET  /api/items
 // DESCRIPTION      >     GET ALL ITEMS
 // ACCESS CONTROL   >     PUBLIC
 router.get('/', async (req, res, next) => {
   let itemList = [];
   try {
-    const data = await admin
+    const data = await db
       .firestore()
       .collection('shopping_item')
       .orderBy('createdAt', 'desc')
@@ -48,7 +50,7 @@ router.post('/add', async (req, res, next) => {
       createdAt: new Date().toISOString()
     };
 
-    const data = await admin
+    const data = await db
       .firestore()
       .collection('shopping_item')
       .add(payload);

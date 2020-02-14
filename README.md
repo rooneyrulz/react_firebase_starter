@@ -1,2 +1,3 @@
 # react_firebase_starter
+
 Simple react.js app with firebase backend, using node.js cloud functions, material UI and more...
