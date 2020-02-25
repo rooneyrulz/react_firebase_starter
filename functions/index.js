@@ -8,7 +8,7 @@ const dbConfig = require('../config/db.config');
 
 const app = express();
 
-admin.initializeApp();
+admin.initializeApp(functions.config());
 firebase.initializeApp(dbConfig);
 
 // Create and Deploy Your First Cloud Functions
