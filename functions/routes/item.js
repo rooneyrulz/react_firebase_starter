@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const admin = require('firebase-admin');
 
+const isAuth = require('../middleware/auth');
+
 const router = Router({ strict: true });
 
 const db = admin.firestore();
@@ -36,7 +38,7 @@ router.get('/', async (req, res, next) => {
 // ROUTE            >     POST  /api/items
 // DESCRIPTION      >     ADD ITEMS
 // ACCESS CONTROL   >     PUBLIC
-router.post('/add', async (req, res, next) => {
+router.post('/add', isAuth, async (req, res, next) => {
   const { name, description } = req.body;
 
   if (!name) return res.status(400).send('Name is required!');
@@ -47,6 +49,7 @@ router.post('/add', async (req, res, next) => {
     const payload = {
       name: name,
       description: description,
+      owner: req.user.uid,
       createdAt: new Date().toISOString()
     };
 
