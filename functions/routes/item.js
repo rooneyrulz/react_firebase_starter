@@ -4,7 +4,6 @@ const admin = require('firebase-admin');
 const isAuth = require('../middleware/auth');
 
 const router = Router({ strict: true });
-
 const db = admin.firestore();
 
 // ROUTE            >     GET  /api/items
@@ -42,7 +41,6 @@ router.post('/add', isAuth, async (req, res, next) => {
   const { name, description } = req.body;
 
   if (!name) return res.status(400).send('Name is required!');
-
   if (!description) return res.status(400).send('Description is required!');
 
   try {

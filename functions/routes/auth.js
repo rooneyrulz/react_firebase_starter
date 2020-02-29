@@ -17,12 +17,12 @@ router.post('/signup', async (req, res, next) => {
   try {
     const data = await firebase
       .auth()
-      .signInWithEmailAndPassword(email, password);
+      .createUserWithEmailAndPassword(email, password);
     const token = data.user.getIdToken();
     return res.status(201).json({ token });
   } catch (error) {
     console.log(error);
-    return res.status(500).send('Something went wrong!');
+    return res.status(500).send(error.code);
   }
 });
 
