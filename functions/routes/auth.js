@@ -19,7 +19,8 @@ router.post('/signup', async (req, res, next) => {
       .auth()
       .createUserWithEmailAndPassword(email, password);
     const token = data.user.getIdToken();
-    return res.status(201).json({ token });
+    console.log(data.user);
+    // return res.status(201).json({ token });
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.code);

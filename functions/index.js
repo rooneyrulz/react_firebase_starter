@@ -3,13 +3,10 @@ const express = require('express');
 const admin = require('firebase-admin');
 const firebase = require('firebase');
 
-// IMPORT DB CONFIG
-const dbConfig = require('./config/db.config');
-
 const app = express();
 
-admin.initializeApp(functions.config());
-firebase.initializeApp(dbConfig);
+admin.initializeApp();
+firebase.initializeApp(require('./config/db.config'));
 
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
